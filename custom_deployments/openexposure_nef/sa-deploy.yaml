@@ -317,16 +317,16 @@ services:
     networks:
       default:
         ipv4_address: ${GRAFANA_IP}
-  nef:
-    build: ../../nef
-    image: docker_nef
-    container_name: nef
+  openexposure_nef:
+    build: ../../openexposure_nef
+    image: openexposure_nef
+    container_name: openexposure_nef
     depends_on:
       - pcf
     env_file:
       - .custom_env
     volumes:
-      - ../../nef:/mnt/nef:ro
+      - ../../openexposure_nef:/mnt/openexposure_nef:ro
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "8080/tcp"

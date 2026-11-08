@@ -16,6 +16,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 COPY --from=builder /as-sess-qos /as-sess-qos
 COPY --from=builder /src/LICENSE /usr/share/doc/open-exposure-nef/LICENSE
-COPY nef_init.sh /nef_init.sh
+COPY openexposure_nef_init.sh /openexposure_nef_init.sh
 EXPOSE 8080/tcp
-CMD ["/nef_init.sh"]
+CMD ["/openexposure_nef_init.sh"]

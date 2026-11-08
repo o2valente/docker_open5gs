@@ -163,7 +163,7 @@ UE_IPV4_IMS=192.168.101.0/24
 # Maximum Number of UEs
 MAX_NUM_UE=1024
 
-# OPEN EXPOSURE NEF (AS Session with QoS, lab access without CAPIF)
+# OPEN EXPOSURE NEF (AS Session with QoS)
 NEF_IP=172.22.0.43
 NEF_BIND_IP=127.0.0.1
 NEF_BIND_PORT=8089

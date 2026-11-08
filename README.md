@@ -210,9 +210,8 @@ docker compose -f sa-deploy.yaml build
 
 ### Open Exposure NEF (optional)
 
-The [NEF custom deployment](custom_deployments/with_nef/README.md) adds Open
-Exposure's AS Session with QoS API to the 5G SA core. It includes source-image
-build instructions and a NEF-to-PCF policy-authorization connectivity check.
+The [NEF custom deployment](custom_deployments/openexposure_nef/README.md) adds Open
+Exposure's AS Session with QoS API to the 5G SA core.
 
 ## Network and deployment configuration
 

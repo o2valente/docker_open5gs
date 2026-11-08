@@ -14,8 +14,7 @@ capifSvc: ""
 disableCapifSecurity: true
 supportedFeatures: "12"
 
-# PCF BitRate values require units. These are example maximum bandwidths,
-# not guarantees of RAN/data-plane enforcement.
+# PCF BitRate values require units.
 qosConfig:
   qos1:
     marBwDl: "1 Mbps"
