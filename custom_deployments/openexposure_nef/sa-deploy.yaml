@@ -332,12 +332,6 @@ services:
       - "8080/tcp"
     ports:
       - "${NEF_BIND_IP}:${NEF_BIND_PORT}:8080/tcp"
-    healthcheck:
-      test: ["CMD", "nc", "-z", "127.0.0.1", "8080"]
-      interval: 10s
-      timeout: 3s
-      retries: 5
-      start_period: 60s
     networks:
       default:
         ipv4_address: ${NEF_IP}
