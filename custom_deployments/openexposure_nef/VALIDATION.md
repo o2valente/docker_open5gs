@@ -26,16 +26,23 @@ The `qos3` request matched a single UDP flow.
 - NEF returned `201` on creation and `200` on retrieval. PCF returned
   HTTP/2 `201` and sent a PCC rule and QoS decision to SMF. The UPF
   accepted the PFCP session modification that installed the PDRs and QER.
-- The Amarisoft trace showed NGAP adding QFI 4 with 5QI 1 and RRC mapping
-  it to DRB 2. The phone completed RRC reconfiguration. The gNB reported
-  4 Mbps GBR and MBR in both directions.
 - NEF returned `204` on deletion and `404` on subsequent retrieval. PCF
   returned HTTP/2 `204` and sent the PCC rule removal to SMF. The UPF
-  accepted the PFCP removal, and Amarisoft released QFI 4 and DRB 2.
-  The gNB then reported only the default QFI 1.
+  accepted the PFCP removal.
 
-The test verified signaling and bearer state. Throughput enforcement remains
-unverified.
+The Amarisoft `qos_flow_get` snapshots and NGAP/RRC traces showed the
+following mapping on the same PDU session.
+
+| Stage | Default flow | Dedicated flow |
+| --- | --- | --- |
+| Before create | QFI 1, 5QI 9, DRB 1 | Absent |
+| Subscription active | QFI 1, 5QI 9, DRB 1 | QFI 4, 5QI 1, DRB 2 |
+| After delete | QFI 1, 5QI 9, DRB 1 | Released |
+
+The phone completed RRC reconfiguration for both the addition and release
+of DRB 2. While the flow was active, the gNB reported 4 Mbps GBR and MBR
+in both directions. Packet-level QFI marking and throughput enforcement
+remain unverified.
 
 UERANSIM can be used for the connectivity check. The radio test requires
 PDU session modification, which [UERANSIM's feature set](https://github.com/aligungr/UERANSIM/wiki/Feature-Set)
