@@ -40,8 +40,7 @@ following mapping on the same PDU session.
 | After delete | QFI 1, 5QI 9, DRB 1 | Released |
 
 The phone completed RRC reconfiguration for both the addition and release
-of DRB 2. While the flow was active, the gNB reported 4 Mbps GBR and MBR
-in both directions.
+of DRB 2.
 
 ## Downlink QFI marking on N3
 
@@ -60,21 +59,11 @@ flow. When the burst started immediately after that report in an earlier run,
 the first matching probe still carried QFI 1 and the next seven carried
 dedicated QFI 2.
 
-## Ookla throughput comparison
+## Bidirectional QFI marking on N3
 
-On 2026-11-10, the same phone ran Ookla over NR SA with Wi-Fi off, once per
-phase. A single `qos3` flow matched TCP port 8080 on the server side in both
-directions. Amarisoft reported 4 Mbps GBR and MBR for the dedicated flow.
-The N3 capture saw the same set of bulk transfer endpoints in each run.
-
-| Stage | Download (Mbps) | Upload (Mbps) | QFI on matching N3 packets |
-| --- | ---: | ---: | --- |
-| Before create | 34.00 | 12.31 | 1 in both directions |
-| Subscription active | 2.79 | 4.31 | 5 in both directions |
-| After delete | 34.80 | 10.92 | 1 in both directions |
-
-The app reported lower throughput while the rule was active and recovered
-after deletion. A strict 4 Mbps cap remains unverified.
+A separate TCP test confirmed that matching uplink and downlink packets
+carried default QFI 1 before creation, dedicated QFI 5 (5QI 1) while the
+subscription was active, and default QFI 1 again after deletion.
 
 UERANSIM can be used for the connectivity check. The radio test requires
 PDU session modification, which [UERANSIM's feature set](https://github.com/aligungr/UERANSIM/wiki/Feature-Set)
