@@ -58,7 +58,23 @@ PDU Session Container on packets captured from the UPF to the gNB.
 The active burst started one second after the gNB reported the dedicated
 flow. When the burst started immediately after that report in an earlier run,
 the first matching probe still carried QFI 1 and the next seven carried
-dedicated QFI 2. Uplink marking and throughput enforcement remain unverified.
+dedicated QFI 2.
+
+## Ookla throughput comparison
+
+On 2026-11-10, the same phone ran Ookla over NR SA with Wi-Fi off, once per
+phase. A single `qos3` flow matched TCP port 8080 on the server side in both
+directions. Amarisoft reported 4 Mbps GBR and MBR for the dedicated flow.
+The N3 capture saw the same set of bulk transfer endpoints in each run.
+
+| Stage | Download (Mbps) | Upload (Mbps) | QFI on matching N3 packets |
+| --- | ---: | ---: | --- |
+| Before create | 34.00 | 12.31 | 1 in both directions |
+| Subscription active | 2.79 | 4.31 | 5 in both directions |
+| After delete | 34.80 | 10.92 | 1 in both directions |
+
+The app reported lower throughput while the rule was active and recovered
+after deletion. A strict 4 Mbps cap remains unverified.
 
 UERANSIM can be used for the connectivity check. The radio test requires
 PDU session modification, which [UERANSIM's feature set](https://github.com/aligungr/UERANSIM/wiki/Feature-Set)
