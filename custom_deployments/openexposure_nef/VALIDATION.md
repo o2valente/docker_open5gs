@@ -41,8 +41,24 @@ following mapping on the same PDU session.
 
 The phone completed RRC reconfiguration for both the addition and release
 of DRB 2. While the flow was active, the gNB reported 4 Mbps GBR and MBR
-in both directions. Packet-level QFI marking and throughput enforcement
-remain unverified.
+in both directions.
+
+## Downlink QFI marking on N3
+
+On 2026-11-10, a separate run used `qos3` to match downlink UDP probes to
+port 5201. Port 5202 served as a control. QFI values came from the GTP-U
+PDU Session Container on packets captured from the UPF to the gNB.
+
+| Stage | Matching probes (UDP 5201) | Control probes (UDP 5202) |
+| --- | --- | --- |
+| Before create | 8 of 8 on QFI 1 | 8 of 8 on QFI 1 |
+| Subscription active | 8 of 8 on QFI 3 (5QI 1) | 8 of 8 on QFI 1 |
+| After delete | 8 of 8 on QFI 1 | 8 of 8 on QFI 1 |
+
+The active burst started one second after the gNB reported the dedicated
+flow. When the burst started immediately after that report in an earlier run,
+the first matching probe still carried QFI 1 and the next seven carried
+dedicated QFI 2. Uplink marking and throughput enforcement remain unverified.
 
 UERANSIM can be used for the connectivity check. The radio test requires
 PDU session modification, which [UERANSIM's feature set](https://github.com/aligungr/UERANSIM/wiki/Feature-Set)
